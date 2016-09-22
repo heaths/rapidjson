@@ -79,6 +79,20 @@ TEST(StringBuffer, Pop) {
     EXPECT_STREQ("AB", buffer.GetString());
 }
 
+TEST(StringBuffer, GetLength) {
+    GenericStringBuffer<UTF16<>, MemoryPoolAllocator<>> buffer;
+
+    EXPECT_EQ(0u, buffer.GetSize());
+    EXPECT_EQ(0u, buffer.GetLength());
+
+    buffer.Put(L'A');
+    buffer.Put(L'B');
+    buffer.Put(L'C');
+
+    EXPECT_EQ(3 * sizeof(wchar_t), buffer.GetSize());
+    EXPECT_EQ(3u, buffer.GetLength());
+}
+
 #if RAPIDJSON_HAS_CXX11_RVALUE_REFS
 
 #if 0 // Many old compiler does not support these. Turn it off temporaily.

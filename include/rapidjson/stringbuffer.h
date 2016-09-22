@@ -79,6 +79,7 @@ public:
     }
 
     size_t GetSize() const { return stack_.GetSize(); }
+    size_t GetLength() const { return stack_.GetSize() / sizeof(Ch); }
 
     static const size_t kDefaultCapacity = 256;
     mutable internal::Stack<Allocator> stack_;
